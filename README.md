@@ -1,1 +1,3 @@
-# rooti
+# Rooti
+
+Rooti BOT Repositorio.
