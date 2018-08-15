@@ -1,0 +1,22 @@
+exports.run = (client, message, args)  => {
+    const Discord = require('discord.js');
+    
+let bicon = client.user.displayAvatarURL;
+let botembed = new Discord.RichEmbed()
+    .setAuthor("LokisBOT", bicon)
+    .setDescription("Informação do Bot")
+    .setColor("#15f153")
+    .setThumbnail(bicon)
+    .addField("🤖 __Nome do BOT:__", client.user.username, true)
+    .addField("📆 __Criado em:__", "Sab 21 de abril de 2018 14:19:04", true)
+    .addField("💻 __Versão:__", "Cmp 1.0.0", true)
+    .addField("👑 __Dono:__", "Sr.Huggest#5202", true)
+    .addField("🛰️ __Ping__ :", Math.round(client.ping), true)
+    .addField("👥 __Membros__ :", client.users.size, true)
+    .addField("💬 __Canais__ :", client.channels.size, true)
+    .setColor("#7289DA")
+    .addField("Informações", "Discord para suporte: https://discord.gg/jwBBks5, Site: www.lokisbot.weebly.com", true);
+
+return message.channel.send(botembed);
+
+}
