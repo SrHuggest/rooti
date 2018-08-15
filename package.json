@@ -1,0 +1,20 @@
+{
+  "name": "rooti",
+  "version": "1.0.0",
+  "description": "rooti bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mrghostzou e wilson gaara",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.3.2",
+    "ffmpeg-binaries": "^4.0.0",
+    "fs": "0.0.1-security",
+    "google-translate-api": "^2.3.0",
+    "snekfetch": "^4.0.4",
+    "yt-search": "^0.1.4",
+    "ytdl-core": "^0.24.0"
+  }
+}
