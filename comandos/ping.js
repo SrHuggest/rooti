@@ -1,9 +1,9 @@
-exports.run = (client, message, args)  => {
-    const Discord = require('discord.js');
+const Discord = require('discord.js')
 
-message.channel.send(`:nerd: **|** Calculando latência, aguarde.`).then(msg1 => {
+module.exports.run = async (bot,message,args) => {
 
-
-msg1.edit('🏓 **|** Latência calculada da mensagem editada: '+`**${Date.now() - msg1.createdTimestamp}**`+'ms\n❤ Batimento cardiaco: (ping - websocket) `'+Math.round(client.ping)+'`ms (📡 **|** Shard: **'+` 0**/0)\n🆘 **|** Caso esteja tendo problemas com conexão do Discord verifique sua rede ou acesse: https://status.discordapp.com`)
-})
+    message.channel.send(`${message.author}, 🛰️ __Ping__: ${Math.round(bot.ping)}`)
 }
+  module.exports.help = {
+    name:"ping"
+  }

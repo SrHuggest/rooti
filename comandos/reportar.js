@@ -1,27 +1,33 @@
-exports.run = async (client, message, args)  => {
-    if(message.guild.id != "477240886812475403") return
-    if(!message.member.roles.has("477241508110794764")) {
-  message.channel.send('⚠ **|** Tem certeza?\nCaso você não tiver um motivo para usar este comando pode ser punido.\nSe sim, está ciente do que está fazendo reaja com :white_check_mark:').then(newMsg => {
-  
-  
-    newMsg.react('✅');
-    const collector = newMsg.createReactionCollector((r, u) => (r.emoji.name === '✅') && u.id == message.author.id);
-       collector.on('collect', r => {
-          switch(r.emoji.name) {
-              case '✅':
-              const channel = message.guild.channels.find('name', 'rooti-modlogs');
-              channel.send("👮 **|** <@&477243791846408214> Verifiquem se algo de errado está acontecendo no servidor.\n"+message.author.tag+" Caso este membro não ter um motivo para a menção puna-o, mas lembre-se pode haver uma confusão alguém pode ter feito algo já ou o causador do rebuliço tiver abandonado o servidor.")
-              r.users.filter(u => r.remove(u.id !== client.user.id));
-                      
-            break
-          }});
-  
-  
-        })
-    } else {
-      const channel2 = message.guild.channels.find('name', 'rooti-modlogs');
-      channel2.send("👮 **|** <@&477243791846408214> Verifiquem se algo de errado está acontecendo no servidor.\n"+message.author.tag+" Caso este membro não ter um motivo para a menção puna-o, mas lembre-se pode haver uma confusão alguém pode ter feito algo já ou o causador do rebuliço tiver abandonado o servidor.")
-  
-  
-  };
-  };
+const Discord = require("discord.js");
+const errors = require("../utils/errors.js");
+
+module.exports.run = async (bot, message, args) => {
+
+        //!report @ned this is the reason
+
+        let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+        if (!rUser) return message.channel.send("Você usou o comando incorretamente: use l!report @user (motivo)");
+        let rreason = args.join(" ").slice(22);
+
+        let reportEmbed = new Discord.RichEmbed()
+            .setDescription("__PUNIDO__")
+            .setColor("#15f153")
+            .addField("USÚARIO REPORTADO:", `${rUser} ou id: ${rUser.id}`)
+            .addField("QUEM REPORTOU:", `${message.author} ou id: ${message.author.id}`)
+            .addField("DATA:", message.createdAt)
+            .addField("MOTIVO:", rreason);
+
+        let reportschannel = message.guild.channels.find(`name`, "reports");
+        if (!reportschannel) return message.channel.send("Não foi possível encontrar o canal #reports.");
+
+
+        message.delete().catch(O_o => { });
+        reportschannel.send(reportEmbed);
+
+        return;
+
+    }
+
+  module.exports.help = {
+    name:"report"
+  }
